@@ -11,6 +11,25 @@ namespace LesDelicesDeTata.ViewModel
 {
     public class ProduitViewModel : ObservableObject
     {
+      
+        private int _produitId;
+        public int ProduitId
+        {
+            get { return _produitId; }
+            set { SetProperty(ref _produitId, value, nameof(ProduitId)); }
+        }
+        
+        private Produits _selectedProduit;
+        public Produits SelectedProduit
+        {
+            get { return _selectedProduit; }
+            set { SetProperty(ref _selectedProduit, value, nameof(SelectedProduit)); }
+        }
+        public void SelectProduit(Produits produit)
+        {
+            SelectedProduit = produit;
+        }
+        
         private DatabaseService _databaseService;
         private ObservableCollection<Produits> _allProduitsList;
 
@@ -27,6 +46,8 @@ namespace LesDelicesDeTata.ViewModel
             get { return _categorie; }
             set { SetProperty(ref _categorie, value, nameof(Categorie)); }
         }
+        
+
 
         private Categorie _selectedCategory;
         public Categorie SelectedCategory
@@ -50,9 +71,12 @@ namespace LesDelicesDeTata.ViewModel
 
         public ProduitViewModel()
         {
+            
             _databaseService = new DatabaseService();
             LoadData();
         }
+        
+      
 
         public void LoadData()
         {
@@ -193,13 +217,48 @@ namespace LesDelicesDeTata.ViewModel
                 Console.WriteLine($"Error in ModifierProduit: {ex}");
             }
         }
-        
-        public void DeleteProduit(Produits produitASupprimer)
+      
+        public void DeleteProduit(Produits produit)
         {
             try
             {
-                // Supprimer le produit de la base de données
-                string deleteQuery = $"DELETE FROM produits WHERE id={produitASupprimer.id}";
+                // Votre logique pour supprimer le produit
+                if (produit != null)
+                {
+                    // Supprimer le produit dans la base de données
+                    string deleteQuery = $"DELETE FROM produits WHERE id = {produit.id}";
+                    _databaseService.ExecuteQuery(deleteQuery);
+
+                    // Afficher un message de succès
+                    MessageBoxResult result = MessageBox.Show("Le produit a été supprimé avec succès. Voulez-vous rafraîchir la liste des produits ?", "Succès", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Actualiser la liste des produits
+                        LoadData();
+                    }
+                }
+                else
+                {
+                    // Afficher un message d'erreur si le produit est null
+                    MessageBox.Show("Veuillez sélectionner un produit à supprimer.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Afficher un message d'erreur en cas d'exception
+                MessageBox.Show($"Erreur lors de la suppression du produit : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Error in SupprimerProduit: {ex}");
+            }
+           
+        }
+        
+        /*public void DeleteProduit(int id)
+        {
+            try
+            {
+                // Supprimer le produit dans la base de données
+                string deleteQuery = $"DELETE FROM produits WHERE id = {id}";
                 _databaseService.ExecuteQuery(deleteQuery);
 
                 // Actualiser la liste des produits
@@ -208,9 +267,12 @@ namespace LesDelicesDeTata.ViewModel
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors de la suppression du produit : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                Console.WriteLine($"Error in SupprimerProduit: {ex}");
+                Console.WriteLine($"Error in DeleteProduit: {ex}");
             }
-        }
+        }*/
+
+        
+       
 
 
         

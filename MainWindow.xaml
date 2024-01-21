@@ -72,24 +72,24 @@
             <ItemsControl ItemsSource="{Binding Produits}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Width="200" MouseLeftButtonDown="Produit_Click">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Width="200" >
                             <StackPanel>
-                                <Image>
+                                <Image Width="200" Height="300">
                                     <Image.Source>
                                         <BitmapImage UriSource="{Binding Image}" />
                                     </Image.Source>
                                 </Image>
 
-                                <!--
-                                <Image Source="{Binding Image}" Width="200" Height="300" Stretch="UniformToFill"/>
-                                -->
-                                <TextBlock Text="{Binding Nom}" HorizontalAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Prix}" HorizontalAlignment="Center"/>
-                                <Button Content="Supprimer" Margin="10" Command="{Binding SupprimerCommand}"/>
-                                <Button Content="Modifier" Margin="10" Command="{Binding ModifierCommand}"/>
-
-
+                                <Border BorderBrush="Transparent" BorderThickness="0" MouseLeftButtonDown="Produit_Click">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Nom}" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Prix}" HorizontalAlignment="Center"/>
+                                        <Button Content="Supprimer" Click="Supprimer_Click" Margin="10" Tag="{Binding id}"/>
+                                        <Button Content="Modifier" Click="Modifier_Click" Margin="10" Tag="{Binding id}"/>
+                                    </StackPanel>
+                                </Border>
                             </StackPanel>
+
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

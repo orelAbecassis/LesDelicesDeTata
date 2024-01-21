@@ -27,19 +27,21 @@ namespace LesDelicesDeTata
             _produitViewModel = new ProduitViewModel();
             DataContext = _produitViewModel; // Définir le contexte de données pour le DataContext
         }
-        
+
         private void Produit_Click(object sender, MouseButtonEventArgs e)
         {
             var border = (Border)sender;
             var produit = (Produits)border.DataContext;
 
             // Construire le message à afficher
-            string message = $"Image: {produit.Image}\nNom: {produit.Nom}\nPrix: {produit.Prix}€\nDescription: {produit.Description}";
+            string message =
+                $"Image: {produit.Image}\nNom: {produit.Nom}\nPrix: {produit.Prix}€\nDescription: {produit.Description}";
 
             // Afficher les détails du produit dans une boîte de dialogue
             MessageBox.Show(message, "Détails du Produit", MessageBoxButton.OK, MessageBoxImage.Information);
-            
+
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Naviguer vers la page addProduit
@@ -47,14 +49,50 @@ namespace LesDelicesDeTata
             ajouterProduitWindow.Show();
         }
 
+        private void Supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var produit = button?.DataContext as Produits;
 
-        
+            if (produit != null)
+            {
+                // Maintenant, vous pouvez utiliser le produit sélectionné pour la suppression
+                _produitViewModel.SelectProduit(produit);
+                _produitViewModel.DeleteProduit(produit);
+            }
+        }
+        private void Modifier_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button?.Tag is int produitId)
+            {
+                // Log la valeur de SelectedProduit avant d'ouvrir la fenêtre EditProduit
+                Console.WriteLine($"SelectedProduit before EditProduit window: {_produitViewModel.SelectedProduit}");
 
-
+                // Naviguer vers la page de modification en passant l'identifiant du produit sélectionné
+                EditProduit editProduitWindow = new EditProduit();
+                editProduitWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un produit à modifier.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine("ProduitId is null");
+            }
+        }
 
 
 
 
 
     }
+
+
+
+
+
+
+
+
+
+
 }
