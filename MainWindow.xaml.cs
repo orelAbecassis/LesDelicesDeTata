@@ -11,9 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows;
 using LesDelicesDeTata.ViewModel;
+
 
 namespace LesDelicesDeTata
 {
@@ -41,6 +40,18 @@ namespace LesDelicesDeTata
             MessageBox.Show(message, "Détails du Produit", MessageBoxButton.OK, MessageBoxImage.Information);
             
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Naviguer vers la page addProduit
+            ajouterProduit ajouterWindow = new ajouterProduit();
+            ajouterWindow.Show();
+        }
+
+
+        
+
+
+
 
 
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LesDelicesDeTata"
         mc:Ignorable="d"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"        
         Title="LesDelicesDeTata" Height="450" Width="800">
 
     <Window.Resources>
@@ -57,9 +57,11 @@
                 </ItemsControl>
 
                 <Menu>
-                    <MenuItem Header="_Add Produits" Command="{Binding AddProduitCommand}"/>
-                    <MenuItem Header="_Edit Produits" Command="{Binding EditProduitCommand}" />
-                    <MenuItem Header="_Delete Produits" Command="{Binding DeleteProduitCommand}" />
+                    <Button Content="Ajouter"  Foreground="Black" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Width="100" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Margin="10"/>
+
+                    <!--
+                    <Button Content="Ajouter Produit" Click="Ajouter_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
+                -->
                 </Menu>
             </StackPanel>
         </Border>

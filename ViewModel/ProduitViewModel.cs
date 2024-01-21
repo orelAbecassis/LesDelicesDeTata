@@ -157,6 +157,24 @@ namespace LesDelicesDeTata.ViewModel
             // Rafraîchir l'affichage
             RaisePropertyChanged(nameof(Produits));
         }
+        
+        public void AjouterProduit(string nom, string description, decimal prix, string image, int idCategorie)
+        {
+            Produits nouveauProduit = new Produits
+            {
+                Nom = nom,
+                Description = description,
+                Prix = prix,
+                Image = image,
+                idCategorie = idCategorie
+            };
+
+            Produits.Add(nouveauProduit);
+
+            // Vous pouvez également retourner ou afficher quelque chose si nécessaire
+            Console.WriteLine("Produit ajouté avec succès !");
+        }
+        
 
     }
 }

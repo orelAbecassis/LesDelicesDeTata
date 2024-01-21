@@ -10,4 +10,6 @@ public class Produits
     public Uri ImageUri => new Uri(Image);
     public string Image { get; set; }
     public int idCategorie{ get; set; }
+    
+    
 }

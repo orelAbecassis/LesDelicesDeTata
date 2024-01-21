@@ -71,3 +71,5 @@ C:\xampp\htdocs\WEB\C#\LesDelicesDeTata\obj\Debug\net7.0-windows\refint\LesDelic
 C:\xampp\htdocs\WEB\C#\LesDelicesDeTata\obj\Debug\net7.0-windows\LesDelicesDeTata.pdb
 C:\xampp\htdocs\WEB\C#\LesDelicesDeTata\obj\Debug\net7.0-windows\LesDelicesDeTata.genruntimeconfig.cache
 C:\xampp\htdocs\WEB\C#\LesDelicesDeTata\obj\Debug\net7.0-windows\ref\LesDelicesDeTata.dll
+C:\xampp\htdocs\WEB\C#\LesDelicesDeTata\obj\Debug\net7.0-windows\ajouterProduit.g.cs
+C:\xampp\htdocs\WEB\C#\LesDelicesDeTata\obj\Debug\net7.0-windows\ajouterProduit.baml
