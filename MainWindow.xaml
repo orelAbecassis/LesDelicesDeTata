@@ -1,0 +1,87 @@
+﻿<Window x:Class="LesDelicesDeTata.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LesDelicesDeTata"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="LesDelicesDeTata" Height="450" Width="800">
+    <Window.Resources>
+        <!-- Add this resource for boolean to visibility conversion -->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Background" Value="LightBlue"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Barre de navigation avec menu -->
+        <Border Background="LightGray" Padding="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="LesDelicesDeTata" FontSize="20"/>
+                <ItemsControl ItemsSource="{Binding Categorie}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Nom}"
+                                    Command="{Binding DataContext.ToggleCategorySelectionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                    CommandParameter="{Binding}"
+                                    Margin="5"
+                                    IsEnabled="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+              
+                <Menu>
+                    <MenuItem Header="_Action">
+                        <MenuItem Header="_Add Produits" Command="{Binding AddProduitCommand}"/>
+                        <MenuItem Header="_Edit Produits" Command="{Binding EditProduitCommand}" />
+                        <MenuItem Header="_Delete Produits" Command="{Binding DeleteProduitCommand}" />
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
+        </Border>
+
+        <!-- Grille pour la liste des films avec défilement -->
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Produits}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Width="200">
+                            <StackPanel>
+                                <Image Source="{Binding Image}" Width="200" Height="300" Stretch="UniformToFill"/>
+                                <TextBlock Text="{Binding Nom}" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Prix}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>
