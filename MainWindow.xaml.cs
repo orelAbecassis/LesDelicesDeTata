@@ -28,5 +28,22 @@ namespace LesDelicesDeTata
             _produitViewModel = new ProduitViewModel();
             DataContext = _produitViewModel; // Définir le contexte de données pour le DataContext
         }
+        
+        private void Produit_Click(object sender, MouseButtonEventArgs e)
+        {
+            var border = (Border)sender;
+            var produit = (Produits)border.DataContext;
+
+            // Construire le message à afficher
+            string message = $"Image: {produit.Image}\nNom: {produit.Nom}\nPrix: {produit.Prix}€\nDescription: {produit.Description}";
+
+            // Afficher les détails du produit dans une boîte de dialogue
+            MessageBox.Show(message, "Détails du Produit", MessageBoxButton.OK, MessageBoxImage.Information);
+            
+        }
+
+
+
+
     }
 }

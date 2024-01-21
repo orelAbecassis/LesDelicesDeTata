@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5kWAShJWB9ki+JUG3h+8JzcrBfxS4ZwN/P0Js/3qP4f8RX2WrMQzLXYe5FAyQALp8jqWxDuELquKmUsDFmX5mw==",
+  "dgSpecHash": "FK7jcu3DzQ8bNt4j72e2pFkU/Gi7qjSFuVGPtzpAP+Jma6/Hhja716m7BKixCIq3yUeNYHQOqO3JHTLXdoflcQ==",
   "success": true,
-  "projectFilePath": "C:\\xampp\\htdocs\\WEB\\projet\\CineFile\\LesDelicesDeTata\\LesDelicesDeTata.csproj",
+  "projectFilePath": "C:\\xampp\\htdocs\\WEB\\C#\\LesDelicesDeTata\\LesDelicesDeTata.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\orela\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\orela\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",

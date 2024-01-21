@@ -1791,11 +1791,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\xampp\\htdocs\\WEB\\projet\\CineFile\\LesDelicesDeTata\\LesDelicesDeTata.csproj",
+      "projectUniqueName": "C:\\xampp\\htdocs\\WEB\\C#\\LesDelicesDeTata\\LesDelicesDeTata.csproj",
       "projectName": "LesDelicesDeTata",
-      "projectPath": "C:\\xampp\\htdocs\\WEB\\projet\\CineFile\\LesDelicesDeTata\\LesDelicesDeTata.csproj",
+      "projectPath": "C:\\xampp\\htdocs\\WEB\\C#\\LesDelicesDeTata\\LesDelicesDeTata.csproj",
       "packagesPath": "C:\\Users\\orela\\.nuget\\packages\\",
-      "outputPath": "C:\\xampp\\htdocs\\WEB\\projet\\CineFile\\LesDelicesDeTata\\obj\\",
+      "outputPath": "C:\\xampp\\htdocs\\WEB\\C#\\LesDelicesDeTata\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\orela\\AppData\\Roaming\\NuGet\\NuGet.Config"
