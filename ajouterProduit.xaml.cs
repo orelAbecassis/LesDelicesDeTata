@@ -1,34 +1,58 @@
 using System.Windows;
+using LesDelicesDeTata.ViewModel;
+using LesDelicesDeTata.Model;
 
-namespace LesDelicesDeTata;
-
-public partial class ajouterProduit : Window
+namespace LesDelicesDeTata
 {
-    public ajouterProduit()
+    public partial class AjouterProduit : Window
     {
-        InitializeComponent();
-    }
-    private void Ajouter_Click(object sender, RoutedEventArgs e)
-    {
-        // Récupérer les données saisies par l'utilisateur
-        string nom = nomTextBox.Text;
-        string description = descriptionTextBox.Text;
+        private ProduitViewModel viewModel;
 
-        // Gérer les erreurs de conversion
-        if (!decimal.TryParse(prixTextBox.Text, out decimal prix))
+        public AjouterProduit()
         {
-            MessageBox.Show("Veuillez saisir un prix valide.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            InitializeComponent();
+            viewModel = new ProduitViewModel(); // Initialisez le champ viewModel de niveau de classe
+            categorieComboBox.ItemsSource = viewModel.Categorie;
         }
 
-        string image = imageTextBox.Text;
+        private void Ajouter_Click(object sender, RoutedEventArgs e)
+        {
+            // Récupérer les données saisies par l'utilisateur
+            string nom = nomTextBox.Text;
+            string description = descriptionTextBox.Text;
 
-        // Appeler la méthode AjouterProduit de la classe GestionProduits
-        /*
-        ajouterProduit.Ajouter(nom, description, prix, image, 0); // Ici, 0 représente l'id de la catégorie, vous devez ajuster cela
-        */
+            // Gérer les erreurs de conversion
+            if (!decimal.TryParse(prixTextBox.Text, out decimal prix))
+            {
+                MessageBox.Show("Veuillez saisir un prix valide.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
-        // Fermer la fenêtre actuelle
-        this.Close();
+            string image = imageTextBox.Text;
+
+            // Vérifier si un élément est sélectionné dans la ComboBox
+            if (categorieComboBox.SelectedItem != null && categorieComboBox.SelectedItem is Categorie selectedCategory)
+            {
+                int idCategorie = selectedCategory.CategorieId;
+
+                // Appeler la méthode AjouterProduit de la classe ProduitViewModel
+                viewModel.AddProduit(new Produits
+                {
+                    Nom = nom,
+                    Description = description,
+                    Prix = prix,
+                    Image = image,
+                    idCategorie = idCategorie
+                });
+                viewModel.LoadData();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une catégorie.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            // Fermer la fenêtre actuelle
+            this.Close();
+        }
     }
 }

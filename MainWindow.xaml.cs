@@ -43,8 +43,8 @@ namespace LesDelicesDeTata
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Naviguer vers la page addProduit
-            ajouterProduit ajouterWindow = new ajouterProduit();
-            ajouterWindow.Show();
+            AjouterProduit ajouterProduitWindow = new AjouterProduit();
+            ajouterProduitWindow.Show();
         }
 
 

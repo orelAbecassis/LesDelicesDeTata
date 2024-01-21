@@ -1,0 +1,24 @@
+<Window x:Class="LesDelicesDeTata.EditProduit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:LesDelicesDeTata"
+        mc:Ignorable="d"
+        Title="EditProduit" Height="450" Width="800">
+    <Grid>
+        <!-- Interface utilisateur pour la modification du produit -->
+        <StackPanel>
+            <!-- Vous pouvez utiliser des TextBox, ComboBox, etc., pour permettre à l'utilisateur de modifier les propriétés -->
+            <TextBlock Text="Nom du Produit" />
+            <TextBox Text="{Binding Produit.Nom, Mode=TwoWay}" />
+
+            <TextBlock Text="Description du Produit" />
+            <TextBox Text="{Binding Produit.Description, Mode=TwoWay}" />
+
+            <!-- Ajoutez d'autres contrôles pour les autres propriétés du produit -->
+
+            <Button Content="Enregistrer" Command="{Binding EnregistrerCommand}" />
+        </StackPanel>
+    </Grid>
+</Window>

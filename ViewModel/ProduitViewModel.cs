@@ -158,23 +158,67 @@ namespace LesDelicesDeTata.ViewModel
             RaisePropertyChanged(nameof(Produits));
         }
         
-        public void AjouterProduit(string nom, string description, decimal prix, string image, int idCategorie)
+        public void AddProduit(Produits nouveauProduit)
         {
-            Produits nouveauProduit = new Produits
+            try
             {
-                Nom = nom,
-                Description = description,
-                Prix = prix,
-                Image = image,
-                idCategorie = idCategorie
-            };
+                // Ajouter le nouveau produit à la base de données
+                string insertQuery = $"INSERT INTO produits (nom, prix, description, image, id_categ_id) VALUES ('{nouveauProduit.Nom}', {nouveauProduit.Prix}, '{nouveauProduit.Description}', '{nouveauProduit.Image}', {nouveauProduit.idCategorie})";
+                _databaseService.ExecuteQuery(insertQuery);
 
-            Produits.Add(nouveauProduit);
-
-            // Vous pouvez également retourner ou afficher quelque chose si nécessaire
-            Console.WriteLine("Produit ajouté avec succès !");
+                // Actualiser la liste des produits
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de l'ajout du produit : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Error in AjouterProduit: {ex}");
+            }
         }
         
+        public void EditProduit(Produits produitModifie)
+        {
+            try
+            {
+                // Mettre à jour le produit dans la base de données
+                string updateQuery = $"UPDATE produits SET nom='{produitModifie.Nom}', prix={produitModifie.Prix}, description='{produitModifie.Description}', image='{produitModifie.Image}', id_categ_id={produitModifie.idCategorie} WHERE id={produitModifie.id}";
+                _databaseService.ExecuteQuery(updateQuery);
+
+                // Actualiser la liste des produits
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la modification du produit : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Error in ModifierProduit: {ex}");
+            }
+        }
+        
+        public void DeleteProduit(Produits produitASupprimer)
+        {
+            try
+            {
+                // Supprimer le produit de la base de données
+                string deleteQuery = $"DELETE FROM produits WHERE id={produitASupprimer.id}";
+                _databaseService.ExecuteQuery(deleteQuery);
+
+                // Actualiser la liste des produits
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la suppression du produit : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Error in SupprimerProduit: {ex}");
+            }
+        }
+
+
+        
+
+       
+        
+       
+
 
     }
 }

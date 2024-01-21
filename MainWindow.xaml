@@ -85,6 +85,10 @@
                                 -->
                                 <TextBlock Text="{Binding Nom}" HorizontalAlignment="Center" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Prix}" HorizontalAlignment="Center"/>
+                                <Button Content="Supprimer" Margin="10" Command="{Binding SupprimerCommand}"/>
+                                <Button Content="Modifier" Margin="10" Command="{Binding ModifierCommand}"/>
+
+
                             </StackPanel>
                         </Border>
                     </DataTemplate>

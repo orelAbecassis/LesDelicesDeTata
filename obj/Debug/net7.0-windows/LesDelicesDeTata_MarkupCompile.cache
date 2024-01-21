@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\xampp\htdocs\WEB\C#\LesDelicesDeTata\App.xaml
-2-1385925520
+3-1938072804
 
-112025195974
+1238504896
 206896128001
-ajouterProduit.xaml;MainWindow.xaml;
+ajouterProduit.xaml;EditProduit.xaml;MainWindow.xaml;
 
 False
 
