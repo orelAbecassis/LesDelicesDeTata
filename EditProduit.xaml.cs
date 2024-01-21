@@ -24,20 +24,23 @@ namespace LesDelicesDeTata
         {
             try
             {
+                // Récupérer la valeur du Tag depuis _viewModel.ProduitId
+                object tagValue = _viewModel.ProduitId;
+                    
                 if (_viewModel.SelectedProduit != null)
                 {
-                    // Call the appropriate method in your ViewModel to save changes
+                    // Appeler la méthode appropriée dans votre ViewModel pour enregistrer les modifications
                     _viewModel.EditProduit(new Produits
                     {
-                        // Assuming these properties exist in your ViewModel
+                        // Supposons que ces propriétés existent dans votre ViewModel
                         id = _viewModel.SelectedProduit.id,
                         Nom = _viewModel.SelectedProduit.Nom,
                         Description = _viewModel.SelectedProduit.Description,
                         Prix = _viewModel.SelectedProduit.Prix
-                        // Add other properties as needed
+                        // Ajoutez d'autres propriétés au besoin
                     });
 
-                    // Close the window after saving changes
+                    // Fermer la fenêtre après avoir enregistré les modifications
                     Close();
                 }
                 else
@@ -47,9 +50,10 @@ namespace LesDelicesDeTata
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error while saving changes: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Erreur lors de l'enregistrement des modifications : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
     }
 }

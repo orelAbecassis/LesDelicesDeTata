@@ -205,7 +205,7 @@ namespace LesDelicesDeTata.ViewModel
             try
             {
                 // Mettre à jour le produit dans la base de données
-                string updateQuery = $"UPDATE produits SET nom='{produitModifie.Nom}', prix={produitModifie.Prix}, description='{produitModifie.Description}', image='{produitModifie.Image}', id_categ_id={produitModifie.idCategorie} WHERE id={produitModifie.id}";
+                string updateQuery = $"UPDATE produits SET nom='{produitModifie.Nom}', prix={produitModifie.Prix}, description='{produitModifie.Description}', image='{produitModifie.Image}', id_categ_id={produitModifie.idCategorie} WHERE id={produitModifie.id }";
                 _databaseService.ExecuteQuery(updateQuery);
 
                 // Actualiser la liste des produits
@@ -226,7 +226,7 @@ namespace LesDelicesDeTata.ViewModel
                 if (produit != null)
                 {
                     // Supprimer le produit dans la base de données
-                    string deleteQuery = $"DELETE FROM produits WHERE id = {produit.id}";
+                    string deleteQuery = $"DELETE FROM produits WHERE id = {produit.id }";
                     _databaseService.ExecuteQuery(deleteQuery);
 
                     // Afficher un message de succès
