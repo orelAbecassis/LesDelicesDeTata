@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 using LesDelicesDeTata.Model;
 
 namespace LesDelicesDeTata.ViewModel
@@ -13,11 +12,11 @@ namespace LesDelicesDeTata.ViewModel
     {
       
         private int _produitId;
-        public int ProduitId
+        /*public int ProduitId
         {
             get { return _produitId; }
             set { SetProperty(ref _produitId, value, nameof(ProduitId)); }
-        }
+        }*/
         
         private Produits _selectedProduit;
         public Produits SelectedProduit
@@ -57,15 +56,6 @@ namespace LesDelicesDeTata.ViewModel
             {
                 SetProperty(ref _selectedCategory, value, nameof(SelectedCategory));
                 ToggleCategorySelection(SelectedCategory);
-            }
-        }
-
-        private RelayCommand<Categorie> _toggleCategorySelectionCommand;
-        public RelayCommand<Categorie> ToggleCategorySelectionCommand
-        {
-            get
-            {
-                return _toggleCategorySelectionCommand ?? (_toggleCategorySelectionCommand = new RelayCommand<Categorie>(ToggleCategorySelection));
             }
         }
 
@@ -254,29 +244,5 @@ namespace LesDelicesDeTata.ViewModel
             }
            
         }
-        
-        /*public void DeleteProduit(int id)
-        {
-            try
-            {
-                // Supprimer le produit dans la base de données
-                string deleteQuery = $"DELETE FROM produits WHERE id = {id}";
-                _databaseService.ExecuteQuery(deleteQuery);
-
-                // Actualiser la liste des produits
-                LoadData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erreur lors de la suppression du produit : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                Console.WriteLine($"Error in DeleteProduit: {ex}");
-            }
-        }*/
-
-        
-       
-        
-        
-
     }
 }

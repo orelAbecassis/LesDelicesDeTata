@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using LesDelicesDeTata.ViewModel;
 
 
@@ -34,8 +25,10 @@ namespace LesDelicesDeTata
             var produit = (Produits)border.DataContext;
 
             // Construire le message à afficher
-            string message =
-                $"Image: {produit.Image}\nNom: {produit.Nom}\nPrix: {produit.Prix}€\nDescription: {produit.Description}";
+            string message = $@"<img src=""{produit.Image}"" alt=""{produit.Nom}"" />
+                    <p>Nom: {produit.Nom}</p>
+                    <p>Prix: {produit.Prix}€</p>
+                    <p>Description: {produit.Description}</p>";
 
             // Afficher les détails du produit dans une boîte de dialogue
             MessageBox.Show(message, "Détails du Produit", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -58,7 +51,6 @@ namespace LesDelicesDeTata
 
                 if (produit != null)
                 {
-                    // Now you can use the selected product for deletion
                     _produitViewModel.SelectProduit(produit);
                     _produitViewModel.DeleteProduit(produit);
                 }
