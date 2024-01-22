@@ -70,24 +70,30 @@ namespace LesDelicesDeTata
             }
         }
 
-        private void Modifier_Click(object sender, RoutedEventArgs e)
+        private void Modifier_Click(object sender,  RoutedEventArgs e)
         {
-            var button = sender as Button;
-            if (button?.Tag is int produitId)
+            try
             {
-                // Log la valeur de SelectedProduit avant d'ouvrir la fenêtre EditProduit
-                Console.WriteLine($"SelectedProduit before EditProduit window: {_produitViewModel.SelectedProduit}");
+                var button = sender as Button;
+                var produit = button?.DataContext as Produits;
 
-                // Naviguer vers la page de modification en passant l'identifiant du produit sélectionné
-                EditProduit editProduitWindow = new EditProduit();
-                editProduitWindow.Show();
+                if (produit != null)
+                {
+                    // Now you can use the selected product for deletion
+                    _produitViewModel.SelectProduit(produit);
+                    Console.WriteLine("on passeee");
+                    EditProduit editProduitWindow = new EditProduit(_produitViewModel);
+                    editProduitWindow.ShowDialog();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Veuillez sélectionner un produit à modifier.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                Console.WriteLine("ProduitId is null");
+                MessageBox.Show($"Error in Supprimer_Click: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Error in Supprimer_Click: {ex}");
             }
+
         }
+
 
 
 

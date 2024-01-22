@@ -275,14 +275,8 @@ namespace LesDelicesDeTata.ViewModel
 
         
        
-
-
         
-
-       
         
-       
-
 
     }
 }

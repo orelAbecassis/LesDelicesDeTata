@@ -10,20 +10,20 @@
         <!-- Interface utilisateur pour la modification du produit -->
         <StackPanel>
             <TextBlock Text="ID du Produit" />
-            <TextBlock Text="{Binding id}" />
+            <TextBlock x:Name="TextId" Text="{Binding SelectedProduit.id}" />
 
             <!-- Vous pouvez utiliser des TextBox, ComboBox, etc., pour permettre à l'utilisateur de modifier les propriétés -->
             <TextBlock Text="Nom du Produit" />
-            <TextBox Text="{Binding Nom, Mode=TwoWay}" />
+            <TextBox x:Name="TextNom" Text="{Binding SelectedProduit.Nom, Mode=TwoWay}" />
 
             <TextBlock Text="Description du Produit" />
-            <TextBox Text="{Binding Description, Mode=TwoWay}" />
+            <TextBox x:Name="TextDescription" Text="{Binding SelectedProduit.Description, Mode=TwoWay}" />
             
             <TextBlock Text="Prix du Produit" />
-            <TextBox Text="{Binding Prix, Mode=TwoWay}"/>
+            <TextBox x:Name="TextPrix" Text="{Binding SelectedProduit.Prix, Mode=TwoWay}"/>
             
             <!-- Ajoutez d'autres contrôles pour les autres propriétés du produit -->
-            <!-- Notez que nous n'incluons pas la propriété "id" car elle ne doit pas être modifiable par l'utilisateur -->
+            <ComboBox x:Name="CategorieComboBox" DisplayMemberPath="NomCateg" SelectedValuePath="CategorieId" Margin="0,0,0,10" ItemsSource="{Binding Categorie}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"/>
 
             <Button Click="Enregistrer_Click" Content="Enregistrer"/>
         </StackPanel>

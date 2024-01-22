@@ -85,7 +85,7 @@
                                         <TextBlock Text="{Binding Nom}" HorizontalAlignment="Center" FontWeight="Bold"/>
                                         <TextBlock Text="{Binding Prix}" HorizontalAlignment="Center"/>
                                         <Button Content="Supprimer" Click="Supprimer_Click" Margin="10" Tag="{Binding id}"/>
-                                        <Button Content="Modifier" Click="Modifier_Click" Margin="10" Tag="{Binding id}"/>
+                                        <Button Content="Modifier" Click="Modifier_Click" Margin="10" />
                                     </StackPanel>
                                 </Border>
                             </StackPanel>
