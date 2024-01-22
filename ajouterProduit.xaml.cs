@@ -44,7 +44,9 @@ namespace LesDelicesDeTata
                     Image = image,
                     idCategorie = idCategorie
                 });
-                viewModel.LoadData();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Close();
             }
             else
             {

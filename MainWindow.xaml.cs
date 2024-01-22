@@ -51,16 +51,25 @@ namespace LesDelicesDeTata
 
         private void Supprimer_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            var produit = button?.DataContext as Produits;
-
-            if (produit != null)
+            try
             {
-                // Maintenant, vous pouvez utiliser le produit sélectionné pour la suppression
-                _produitViewModel.SelectProduit(produit);
-                _produitViewModel.DeleteProduit(produit);
+                var button = sender as Button;
+                var produit = button?.DataContext as Produits;
+
+                if (produit != null)
+                {
+                    // Now you can use the selected product for deletion
+                    _produitViewModel.SelectProduit(produit);
+                    _produitViewModel.DeleteProduit(produit);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in Supprimer_Click: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Error in Supprimer_Click: {ex}");
             }
         }
+
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;

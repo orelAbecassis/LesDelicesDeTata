@@ -82,8 +82,8 @@ namespace LesDelicesDeTata.ViewModel
         {
             try
             {
-                // Chargez les films
-                string produitQuery = "SELECT nom,  prix,description, image, id_categ_id FROM produits";
+                // Chargez les tartes
+                string produitQuery = "SELECT id, nom,  prix,description, image, id_categ_id FROM produits";
                 DataTable produitResult = _databaseService.ExecuteQuery(produitQuery);
 
                 // Chargez les catégories
@@ -102,6 +102,7 @@ namespace LesDelicesDeTata.ViewModel
                         // Créer un nouvel objet Produits et l'ajouter à la liste
                         produits.Add(new Produits
                         {
+                            id = Convert.ToInt32(row["id"]),
                             Nom = Convert.ToString(row["nom"]),
                             Prix = Convert.ToDecimal(row["prix"]),
                             Description = Convert.ToString(row["description"]),
@@ -226,6 +227,7 @@ namespace LesDelicesDeTata.ViewModel
                 if (produit != null)
                 {
                     // Supprimer le produit dans la base de données
+                    Console.WriteLine(produit.id);
                     string deleteQuery = $"DELETE FROM produits WHERE id = {produit.id }";
                     _databaseService.ExecuteQuery(deleteQuery);
 
