@@ -22,7 +22,6 @@ namespace LesDelicesDeTata
             CategorieComboBox.SelectedItem = _viewModel.SelectedCategory;
         }
 
-        // Set the DataContext of the window to the ViewModel
         DataContext = _viewModel;
 
         Console.WriteLine($"SelectedProduit in EditProduit constructor: {_viewModel.SelectedProduit}");
@@ -34,15 +33,16 @@ namespace LesDelicesDeTata
         {
             if (_viewModel.SelectedProduit != null)
             {
-                // Appeler la méthode appropriée dans votre ViewModel pour enregistrer les modifications
                 _viewModel.EditProduit(new Produits
                 {
                     id = _viewModel.SelectedProduit.id,
-                    Nom = TextNom.Text, // Utilisez le Text de la TextBox pour récupérer la modification
+                    Nom = TextNom.Text, 
                     Description = TextDescription.Text,
                     Prix = Convert.ToDecimal(TextPrix.Text)
-                    // Assurez-vous de traiter les autres propriétés de manière similaire
+                    
                 });
+                
+                _viewModel.EditProduit(_viewModel.SelectedProduit);
 
                 Close();
             }
